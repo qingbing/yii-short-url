@@ -1,0 +1,37 @@
+{
+  "name": "qingbing/yii-short-url",
+  "description": "yii实现的url短链系统",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "yii",
+    "url",
+    "short-url",
+    "yii-short-url"
+  ],
+  "homepage": "http://www.phpcorner.net",
+  "authors": [
+    {
+      "name": "qingbing",
+      "email": "780042175@qq.com"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-curl": "*",
+    "php": "^7.1.0",
+    "yiisoft/yii2": "~2.0.14",
+    "yiisoft/yii2-bootstrap": "~2.0.0",
+    "yiisoft/yii2-httpclient": "^2.0",
+    "yiisoft/yii2-queue": "^2.3",
+    "qingbing/zf-helper": "^1.0",
+    "qingbing/yii-helper": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "YiiShortUrl\\": "src"
+    }
+  }
+}
