@@ -1,5 +1,5 @@
 {
-  "name": "qingbing/yii-short-url",
+  "name": "qingbing/yii2-short-url",
   "description": "yii实现的url短链系统",
   "type": "library",
   "license": "MIT",
