@@ -1,6 +1,6 @@
 {
   "name": "qingbing/yii2-short-url",
-  "description": "yii实现的url短链系统",
+  "description": "yii2实现的url短链系统组件",
   "type": "library",
   "license": "MIT",
   "keywords": [

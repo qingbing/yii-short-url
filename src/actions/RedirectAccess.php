@@ -43,11 +43,11 @@ class RedirectAccess extends Action
         if ($short->type == ShortUrlFlag::TYPE_TEMPORARY) {
             $today = Format::date();
             // 用户生效判断
-            if ($short->expire_begin_at > '1900-01-01' && $short->expire_begin_at > $today) {
+            if ($short->expire_begin_date > '1900-01-01' && $short->expire_begin_date > $today) {
                 throw new CustomException('无效访问链接');
             }
             // 用户失效判断
-            if ($short->expire_end_at > '1900-01-01' && $short->expire_end_at < $today) {
+            if ($short->expire_end_date > '1900-01-01' && $short->expire_end_date < $today) {
                 throw new CustomException('无效访问链接');
             }
         }

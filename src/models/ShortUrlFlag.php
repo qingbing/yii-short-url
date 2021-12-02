@@ -18,8 +18,8 @@ use Zf\Helper\NumericTransform;
  * @property int $is_deleted 是否删除
  * @property int $times 链接调用次数
  * @property string $expire_ip 有效IP地址
- * @property string $expire_begin_at 生效日期
- * @property string $expire_end_at 失效日期
+ * @property string $expire_begin_date 生效日期
+ * @property string $expire_end_date 失效日期
  * @property string $created_at 创建时间
  * @property string $access_at 最后访问时间
  * @property string $updated_at 更新时间
@@ -45,7 +45,7 @@ class ShortUrlFlag extends Model
         return [
             [['url_source_id', 'type'], 'required'],
             [['url_source_id', 'is_deleted', 'times'], 'integer'],
-            [['expire_begin_at', 'expire_end_at', 'created_at', 'access_at', 'updated_at'], 'safe'],
+            [['expire_begin_date', 'expire_end_date', 'created_at', 'access_at', 'updated_at'], 'safe'],
             [['md5'], 'string', 'max' => 32],
             [['type'], 'string', 'max' => 20],
             [['desc', 'expire_ip'], 'string', 'max' => 255],
@@ -60,20 +60,20 @@ class ShortUrlFlag extends Model
     public function attributeLabels()
     {
         return [
-            'id'              => '自增ID',
-            'url_source_id'   => 'url资源ID',
-            'md5'             => 'URL的md5码',
-            'type'            => '类型[permanent:永久,temporary:临时]',
-            'desc'            => '描述',
-            'flag'            => '短链标记',
-            'is_deleted'      => '是否删除',
-            'times'           => '链接调用次数',
-            'expire_ip'       => '有效IP地址',
-            'expire_begin_at' => '生效日期',
-            'expire_end_at'   => '失效日期',
-            'created_at'      => '创建时间',
-            'access_at'       => '最后访问时间',
-            'updated_at'      => '更新时间',
+            'id'                => '自增ID',
+            'url_source_id'     => 'url资源ID',
+            'md5'               => 'URL的md5码',
+            'type'              => '类型[permanent:永久,temporary:临时]',
+            'desc'              => '描述',
+            'flag'              => '短链标记',
+            'is_deleted'        => '是否删除',
+            'times'             => '链接调用次数',
+            'expire_ip'         => '有效IP地址',
+            'expire_begin_date' => '生效日期',
+            'expire_end_date'   => '失效日期',
+            'created_at'        => '创建时间',
+            'access_at'         => '最后访问时间',
+            'updated_at'        => '更新时间',
         ];
     }
 

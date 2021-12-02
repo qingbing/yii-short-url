@@ -77,8 +77,8 @@ class ShortUrlController extends RestController
             [['url'], 'required'],
             ['url', 'string', 'label' => 'URL'],
             ['expire_ip', 'ip', 'label' => '有效IP地址'],
-            ['expire_begin_at', 'datetime', 'label' => '生效日期', 'format' => 'php:Y-m-d'],
-            ['expire_end_at', 'datetime', 'label' => '失效日期', 'format' => 'php:Y-m-d'],
+            ['expire_begin_date', 'datetime', 'label' => '生效日期', 'format' => 'php:Y-m-d'],
+            ['expire_end_date', 'datetime', 'label' => '失效日期', 'format' => 'php:Y-m-d'],
             ['desc', 'string', 'label' => '描述', 'max' => 255],
         ]);
         // 业务处理

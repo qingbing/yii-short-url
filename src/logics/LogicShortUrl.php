@@ -73,14 +73,14 @@ class LogicShortUrl extends Factory
                     'or',
                     [ // 未设置有效期的
                       'and',
-                      ['<', 'flag.expire_end_at', EMPTY_TIME_MIN],
-                      ['<', 'flag.expire_end_at', EMPTY_TIME_MIN],
+                      ['<', 'flag.expire_end_date', EMPTY_TIME_MIN],
+                      ['<', 'flag.expire_end_date', EMPTY_TIME_MIN],
                     ], [
                         'not', // 有效反转
                         [ // 有效期的
                           'and',
-                          ['<', 'flag.expire_end_at', $nowDatetime],
-                          ['>', 'flag.expire_begin_at', $nowDatetime],
+                          ['<', 'flag.expire_end_date', $nowDatetime],
+                          ['>', 'flag.expire_begin_date', $nowDatetime],
                         ]
                     ]
                 ]);
@@ -88,8 +88,8 @@ class LogicShortUrl extends Factory
                 // 失效用户
                 $query->andWhere([
                     'and',
-                    ['<', 'flag.expire_end_at', $nowDatetime],
-                    ['>', 'flag.expire_begin_at', $nowDatetime],
+                    ['<', 'flag.expire_end_date', $nowDatetime],
+                    ['>', 'flag.expire_begin_date', $nowDatetime],
                 ]);
             }
         }
@@ -131,13 +131,13 @@ class LogicShortUrl extends Factory
             'expire_ip'     => $params['expire_ip'] ?? '',
         ]);
         $model->type = ShortUrlFlag::TYPE_PERMANENT;
-        if (isset($params['expire_begin_at']) && !empty($params['expire_begin_at'])) {
-            $model->type            = ShortUrlFlag::TYPE_TEMPORARY;
-            $model->expire_begin_at = $params['expire_begin_at'];
+        if (isset($params['expire_begin_date']) && !empty($params['expire_begin_date'])) {
+            $model->type              = ShortUrlFlag::TYPE_TEMPORARY;
+            $model->expire_begin_date = $params['expire_begin_date'];
         }
-        if (isset($params['expire_end_at']) && !empty($params['expire_end_at'])) {
-            $model->type          = ShortUrlFlag::TYPE_TEMPORARY;
-            $model->expire_end_at = $params['expire_end_at'];
+        if (isset($params['expire_end_date']) && !empty($params['expire_end_date'])) {
+            $model->type            = ShortUrlFlag::TYPE_TEMPORARY;
+            $model->expire_end_date = $params['expire_end_date'];
         }
         return $model->saveOrException();
     }
@@ -160,13 +160,13 @@ class LogicShortUrl extends Factory
             'is_deleted' => IS_DELETED_NO
         ]);
         $model->type = ShortUrlFlag::TYPE_PERMANENT;
-        if (isset($params['expire_begin_at']) && !empty($params['expire_begin_at'])) {
-            $model->type            = ShortUrlFlag::TYPE_TEMPORARY;
-            $model->expire_begin_at = $params['expire_begin_at'];
+        if (isset($params['expire_begin_date']) && !empty($params['expire_begin_date'])) {
+            $model->type              = ShortUrlFlag::TYPE_TEMPORARY;
+            $model->expire_begin_date = $params['expire_begin_date'];
         }
-        if (isset($params['expire_end_at']) && !empty($params['expire_end_at'])) {
-            $model->type          = ShortUrlFlag::TYPE_TEMPORARY;
-            $model->expire_end_at = $params['expire_end_at'];
+        if (isset($params['expire_end_date']) && !empty($params['expire_end_date'])) {
+            $model->type            = ShortUrlFlag::TYPE_TEMPORARY;
+            $model->expire_end_date = $params['expire_end_date'];
         }
         $model->md5 = $this->getFlagMd5($model);
         return $model->saveOrException();
@@ -257,17 +257,17 @@ class LogicShortUrl extends Factory
     {
         if (is_array($params)) {
             $md5Array = [
-                'url'             => $params['url'] ?? '',
-                'expire_ip'       => $params['expire_ip'] ?? '',
-                'expire_begin_at' => $params['expire_begin_at'] ?? '',
-                'expire_end_at'   => $params['expire_end_at'] ?? '',
+                'url'               => $params['url'] ?? '',
+                'expire_ip'         => $params['expire_ip'] ?? '',
+                'expire_begin_date' => $params['expire_begin_date'] ?? '',
+                'expire_end_date'   => $params['expire_end_date'] ?? '',
             ];
         } else if ($params instanceof ShortUrlFlag) {
             $md5Array = [
-                'url'             => $params->source->url,
-                'expire_ip'       => $params->expire_ip,
-                'expire_begin_at' => $params->expire_begin_at,
-                'expire_end_at'   => $params->expire_end_at,
+                'url'               => $params->source->url,
+                'expire_ip'         => $params->expire_ip,
+                'expire_begin_date' => $params->expire_begin_date,
+                'expire_end_date'   => $params->expire_end_date,
             ];
         } else {
             throw new CustomException('获取flag参数不正确');
