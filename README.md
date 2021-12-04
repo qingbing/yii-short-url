@@ -19,3 +19,19 @@ Yii::$app->params['baseUrlForShortUrl']
 
 # 对于访问短链，提供action: \YiiShortUrl\actions\RedirectAccess
 ```
+
+## 4. 配置参数 
+### 4.1 main.php
+```php
+'params'     => [
+    'baseUrlForShortUrl' => define_var('PARAM_BASE_URI_FOR_SHORT', 'http://www.phpcorner.net/s'),
+],
+```
+
+### 4.2 define-local.php
+```php
+// 短链系统访问baseUri
+defined('PARAM_BASE_URI_FOR_SHORT') or define('PARAM_BASE_URI_FOR_SHORT', 'http://www.phpcorner.net/s');
+
+```
+
