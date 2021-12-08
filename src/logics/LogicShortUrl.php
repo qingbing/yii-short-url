@@ -65,33 +65,8 @@ class LogicShortUrl extends Factory
         }
 
         // 是否有效查询
-        if (isset($params['isExpire']) && "" !== $params['isExpire'] && null !== $params['isExpire']) {
-            $nowDatetime = Format::datetime();
-            if ($params['isExpire']) {
-                // 有效用户
-                $query->andWhere([
-                    'or',
-                    [ // 未设置有效期的
-                      'and',
-                      ['<', 'flag.expire_end_date', EMPTY_TIME_MIN],
-                      ['<', 'flag.expire_end_date', EMPTY_TIME_MIN],
-                    ], [
-                        'not', // 有效反转
-                        [ // 有效期的
-                          'and',
-                          ['<', 'flag.expire_end_date', $nowDatetime],
-                          ['>', 'flag.expire_begin_date', $nowDatetime],
-                        ]
-                    ]
-                ]);
-            } else {
-                // 失效用户
-                $query->andWhere([
-                    'and',
-                    ['<', 'flag.expire_end_date', $nowDatetime],
-                    ['>', 'flag.expire_begin_date', $nowDatetime],
-                ]);
-            }
+        if (isset($params['isExpire'])) {
+            $this->expireWhere($query, $params['isExpire'], 'flag.expire_begin_date', 'flag.expire_end_date');
         }
         return Pager::getInstance()->pagination($query, $params['pageNo'], $params['pageSize']);
     }

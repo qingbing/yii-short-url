@@ -3,7 +3,9 @@
 namespace YiiShortUrl\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use YiiHelper\abstracts\Model;
+use YiiHelper\behaviors\DefaultBehavior;
 use Zf\Helper\NumericTransform;
 
 /**
@@ -74,6 +76,25 @@ class ShortUrlFlag extends Model
             'created_at'        => '创建时间',
             'access_at'         => '最后访问时间',
             'updated_at'        => '更新时间',
+        ];
+    }
+
+    /**
+     * 绑定 behavior
+     *
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class'      => DefaultBehavior::class,
+                'type'       => DefaultBehavior::TYPE_DATETIME,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['expire_begin_date', 'expire_end_date'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['expire_begin_date', 'expire_end_date'],
+                ],
+            ],
         ];
     }
 
