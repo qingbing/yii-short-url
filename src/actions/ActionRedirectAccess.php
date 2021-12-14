@@ -19,10 +19,10 @@ use Zf\Helper\Format;
 /**
  * 操作 : 提供给前端供短链转发
  *
- * Class RedirectAccess
+ * Class ActionRedirectAccess
  * @package YiiShortUrl\actions
  */
-class RedirectAccess extends Action
+class ActionRedirectAccess extends Action
 {
     /**
      * 运行逻辑
