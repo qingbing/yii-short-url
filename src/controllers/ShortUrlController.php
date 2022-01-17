@@ -16,7 +16,6 @@ use YiiShortUrl\services\ShortUrlService;
 use Zf\Helper\Traits\Models\TLabelCompareRelation;
 use Zf\Helper\Traits\Models\TLabelDeleted;
 use Zf\Helper\Traits\Models\TLabelOrderBy;
-use Zf\Helper\Traits\Models\TLabelYesNo;
 
 /**
  * 控制器 : URL短链后台管理
@@ -56,7 +55,7 @@ class ShortUrlController extends RestController
             ['orderByField', 'in', 'label' => '排序字段', 'range' => array_keys(ShortUrlFlag::orderAbilityFields())],
             ['orderByWay', 'in', 'label' => '排序方式', 'default' => ORDER_DESC, 'range' => array_keys(TLabelOrderBy::orderByLabels())],
             // 有效期规则
-            ['isExpire', 'in', 'label' => '是否有效', 'range' => array_keys(TLabelYesNo::isLabels())],
+            ['isExpire', 'boolean', 'label' => '是否有效'],
         ], null, true);
         // 业务处理
         $res = $this->service->list($params);
